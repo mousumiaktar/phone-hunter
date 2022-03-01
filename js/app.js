@@ -27,7 +27,7 @@ const showDisplay = (phones) => {
         div.classList.add('col-lg-4');
         div.classList.add('mb-5');
         div.innerHTML = `
-        <div class="card" style="width: 16rem;">
+        <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 16rem;">
             <img src="${phone.image}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h4 class="card-title">${phone.phone_name}</h4>
@@ -55,7 +55,7 @@ const displayPhoneDetail = data => {
     phoneDetails.textContent = '';
     const div = document.createElement('div');
     div.innerHTML = `
-    <div>
+    <div class="card shadow p-3 mb-5 bg-body rounded mx-auto" style="width: 18rem;">
         <img src="${data.image}" class="card-img-top" alt="...">
         <div class="card-body">
             <h4 "class="card-title">${data.name}</h4>
