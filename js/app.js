@@ -22,7 +22,7 @@ const showDisplay = (phones) => {
        alert('no result found');
     }
     else{
-    for(const phone of phone20){
+    phone20.forEach(phone =>{
         const div = document.createElement('div');
         div.classList.add('col-lg-4');
         div.classList.add('mb-5');
@@ -37,8 +37,8 @@ const showDisplay = (phones) => {
          </div>
     `;
     parentElement.append(div);  
-    }
-};
+    })
+}
 };
     
 
