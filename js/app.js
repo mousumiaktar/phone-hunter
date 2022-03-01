@@ -39,7 +39,7 @@ const showDisplay = (phones) => {
     parentElement.append(div);  
     }
 };
-}
+};
     
 
 const details = (phoneId) => {
