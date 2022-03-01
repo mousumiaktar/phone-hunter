@@ -1,18 +1,21 @@
 const allPhones = () => {
     const inputField = document.getElementById('inputField');
+    const phoneDetails = document.getElementById('phone-details');
+    phoneDetails.innerHTML = '';
     const searchValue = inputField.value;
+    // clear data
     inputField.value = '';
+    // load data
     const url=`https://openapi.programming-hero.com/api/phones?search=${searchValue}`;
     fetch(url)
     .then(res => res.json())
     .then(data => showDisplay(data.data));
 };
 
+// Display-show
 const showDisplay = (phones) => {
-    // console.log(phones);
     const morePhones = phones;
     const phone20 = morePhones.slice(0, 20);
-    // console.log(phone20);
     const parentElement = document.getElementById('phone-container');
     parentElement.textContent = '';
     if(phone20.length == 0){
@@ -20,12 +23,11 @@ const showDisplay = (phones) => {
     }
     else{
     for(const phone of phone20){
-        // console.log(phone);
         const div = document.createElement('div');
         div.classList.add('col-lg-4');
         div.classList.add('mb-5');
         div.innerHTML = `
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 16rem;">
             <img src="${phone.image}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h4 class="card-title">${phone.phone_name}</h4>
@@ -47,8 +49,8 @@ const details = (phoneId) => {
     .then(data => displayPhoneDetail(data.data));
 };
 
+// Single Phone Details
 const displayPhoneDetail = data => {
-    // console.log(data);
     const phoneDetails = document.getElementById('phone-details');
     phoneDetails.textContent = '';
     const div = document.createElement('div');
@@ -57,15 +59,15 @@ const displayPhoneDetail = data => {
         <img src="${data.image}" class="card-img-top" alt="...">
         <div class="card-body">
             <h4 "class="card-title">${data.name}</h4>
-            <h4 class="card-title">Release-Date: ${data.releaseDate} </h4>
+            <h6 class="card-title">Release-Date: ${data.releaseDate?data.releaseDate:'Release-date can not be find'} </h6>
             <h6>Storage: ${data.mainFeatures.chipSet}</h6>
             <h6>Display-Size: ${data.mainFeatures.displaySize}</h6>
             <h6>Memory: ${data.mainFeatures.memory}</h6>
             <h6>Storage: ${data.mainFeatures.storage}</h6>
             <p>${data.mainFeatures.sensors}</p>
-            <h6>WLAN: ${data.others.WLAN}</h6>
-            <h6>Bluetooth: ${data.others.Bluetooth}</h6>
-            <h6>GPS: ${data.others.GPS}</h6>
+            <h6>WLAN: ${data?.others?.WLAN? data.others.WLAN:'data can not be find'}</h6>
+            <h6>Bluetooth: ${data?.others?.Bluetooth? data.others.Bluetooth:'data can to be find'}</h6>
+            <h6>GPS: ${data?.others?.GPS? data.others.GPS:'data can not be find'}</h6>
         </div>
     </div>    
      `;
